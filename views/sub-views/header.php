@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet" href="./vendor/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="./public/templates/dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="./vendor/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- DataTables -->
@@ -20,5 +18,6 @@
     <link rel="stylesheet" href="./vendor/datatables-editor/css/editor.bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="./public/templates/dist/css/adminlte.min.css">
+    <!-- Custom css -->
     <link rel="stylesheet" href="./public/assets/css/custom_css.css">
 </head>

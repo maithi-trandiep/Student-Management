@@ -50,7 +50,7 @@
             <img src="public/assets/img/user_photo.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Utilisateur</a>
+            <a href="#" class="d-block">Admin</a>
           </div>
         </div>
 

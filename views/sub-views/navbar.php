@@ -21,6 +21,12 @@
             </div>
         </div>
         </form>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+        <!-- Notifications Dropdown Menu -->
+        <a href="logout.php" class="fas fa-sign-out-alt fa-lg"></a>
+        </ul>
     </nav>
     <!-- /.navbar -->
 
@@ -40,7 +46,7 @@
           <img src="public/assets/img/user_photo.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Utilisateur</a>
+          <a href="#" class="d-block">Admin</a>
         </div>
       </div>
 
