@@ -59,32 +59,53 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>S'identifier</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./vendor/fontawesome-free/css/all.min.css">
     <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 400px; padding: 20px; }
+    body{ font: 14px sans-serif; }
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center; height: 700px; }
+    .wrapper {
+        background-color: #f0f2f5;
+    }
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <h2>S'identifier</h2>
-        <p>Veuillez remplir vos identifiants pour vous connecter.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <label>Nom d'utilisateur</label>
-                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
-                <span class="help-block"><?php echo $username_err; ?></span>
-            </div>    
-            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <label>Mot de passe</label>
-                <input type="password" name="pwd" class="form-control">
-                <span class="help-block"><?php echo $password_err; ?></span>
+        <div class="container">
+            <div class="form-section">
+            <h2>S'identifier</h2>
+            <p>Veuillez remplir vos identifiants pour vous connecter.</p>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                    <label>Nom d'utilisateur</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                    </div>
+                    <span class="help-block"><?php echo $username_err; ?></span>
+                </div>    
+                <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                    <label>Mot de passe</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input type="password" name="pwd" class="form-control">
+                    </div>
+                    <span class="help-block"><?php echo $password_err; ?></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Valider">
+                </div>
+            </form>
             </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Valider">
-            </div>
-        </form>
+        </div>
     </div>
 </body>
 </html>

@@ -26,3 +26,12 @@ CREATE TABLE etudiant
 	entrepriseAlt varchar(255)
 )
 ENGINE=INNODB;
+
+CREATE TABLE utilisateur (
+    idU int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    identifiant varchar(50) NOT NULL UNIQUE,
+    passe varchar(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  	updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+

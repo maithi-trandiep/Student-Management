@@ -328,19 +328,48 @@
         ]
     } );
 
-  //   editor.on('opened', function(e, node, data, items, type) {
-  //     editor.field('idE').disable();
-  // })
-  
-  editor.on( 'open', function ( e, type ) {
-    var modifier = editor.modifier();
- 
-    if ( modifier ) {
-        var data = table.row( modifier ).data();
- 
-        // do something with `data`
-    }
-} );
+    let dataBeforeEdit = [];
+    editor.on( 'initEdit', function (  e, node, data, items, type ) {
+      // Type is 'main', 'bubble' or 'inline'
+      //alert( 'Editor edit form shown' );
+      console.log('initEdit current data', data)
+      // Keep old edit data before update
+      if (data) {
+        dataBeforeEdit.push({
+          idE: data.idE,
+          nomEntreprise_actuel: data.nomEntreprise_actuel,
+          statut_actuel: data.statut_actuel
+        })
+      }
+    });
+    editor.on( 'postEdit', function (  e, json, data, id ) {
+      // Type is 'main', 'bubble' or 'inline'
+      //alert( 'Editor edit form shown' );
+      console.log('postEdit data', data, json)
+      // if no error then insert update history
+      if (json && json.error == '') {
+        if (dataBeforeEdit.length > 0) {
+          const oldData = dataBeforeEdit.pop();
+          if (oldData.idE === data.idE) {
+            // now add update history
+            jQuery.ajax({
+                type: "POST",
+                url: 'add_history.php',
+                dataType: 'json',
+                data: oldData,
+                success: function (obj, textstatus) {
+                  if( !('error' in obj) ) {
+                    console.log(obj.result);
+                  }
+                  else {
+                    console.log(obj.error);
+                  }
+                }
+            });
+          }
+        }
+      }
+    });
 
     var table = $("#infoS")
     .on("init.dt", function() {
