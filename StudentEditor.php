@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // DataTables PHP library
 include( "./vendor/datatables-editor/lib/DataTables.php" );
  
@@ -12,7 +14,7 @@ use
     DataTables\Editor\Upload,
     DataTables\Editor\Validate,
     DataTables\Editor\ValidateOptions;
- 
+
 // Build our Editor instance and process the data coming from _POST
 Editor::inst( $db, 'etudiant', 'idE' )
     ->fields(
@@ -72,6 +74,9 @@ Editor::inst( $db, 'etudiant', 'idE' )
         ),
         Field::inst( 'entrepriseAlt' )
     )
+    ->where(function ($q) {
+        $q->where('idE', intval($_SESSION['idE']));
+    })
     ->process( $_POST )
     ->json();
 ?>

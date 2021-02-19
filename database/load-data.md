@@ -1,3 +1,7 @@
 # Load data from csv file to MYSQL database
 
 LOAD DATA LOCAL INFILE '/Applications/MAMP/htdocs/stage-etudiant/DB/etudiants.csv' INTO TABLE etudiant FIELDS TERMINATED BY ';' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (idE, diplome, @vnumDiplome, anneeCertification, @vcampus, @vclasse, nom, prenom, statut_6m, @vnomEntreprise_6m, statut_actuel, @vnomEntreprise_actuel, @vmail, @vtel, @vdateContact, @vidCom, @vdiplomeOrigine, expImmo, @ventrepriseAlt) SET idE = NULL, numDiplome = NULLIF(@vnumDiplome,''), campus = NULLIF(@vcampus,''), classe = NULLIF(@vclasse,''), nomEntreprise_6m = NULLIF(@vnomEntreprise_6m,''), nomEntreprise_actuel = NULLIF(@vnomEntreprise_actuel,''), mail = NULLIF(@vmail,''), tel = NULLIF(@vtel,''), dateContact = NULLIF(@vdateContact,''), idCom = NULLIF(@vidCom,''), diplomeOrigine = NULLIF(@vdiplomeOrigine,''), entrepriseAlt = NULLIF(@ventrepriseAlt,'');
+
+LOAD DATA LOCAL INFILE '/Applications/MAMP/htdocs/php-student/database/data_user.csv' INTO TABLE user FIELDS TERMINATED BY ';' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (idU, @username, @pwd, @role, @modified_at) SET idU = NULL, username = NULLIF(@username,''), pwd = NULLIF(@pwd,''), role = NULLIF(@role,''), modified_at = NULLIF(@modified_at,''); 
+
+LOAD DATA LOCAL INFILE '/Applications/MAMP/htdocs/php-student/database/user_etudiant.csv' INTO TABLE user_etudiant FIELDS TERMINATED BY ';' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (idE, idU);

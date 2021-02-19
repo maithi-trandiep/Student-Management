@@ -46,7 +46,7 @@
           <img src="public/assets/img/user_photo.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Admin</a>
+          <a href="#" class="d-block"><?php echo $_SESSION["username"] ?></a>
         </div>
       </div>
 
@@ -77,6 +77,7 @@
                 </p>
                 </a>
                 <ul class="nav nav-treeview">
+                <?php if(isset($_SESSION["loggedin"]) && $_SESSION["role"] == "admin") { ?>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -89,6 +90,14 @@
                     <p>Liste des étudiants</p>
                     </a>
                 </li>
+                <?php } else { ?>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Mon profil</p>
+                    </a>
+                </li>
+                <?php } ?>
                 </ul>
             </li>
             </ul>

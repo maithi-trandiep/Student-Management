@@ -22,27 +22,40 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $password = trim($_POST["pwd"]);
     }
     if(empty($username_err) && empty($password_err)){
-        $sql = "SELECT id, username, pwd FROM users WHERE username = :username"; 
+        //$sql = "SELECT idU, username, pwd, role FROM user WHERE username = :username"; 
+        $sql = "SELECT a.idU, a.username, a.pwd, a.role, b.idE FROM user as a LEFT OUTER JOIN user_etudiant as b ON a.idU = b.idU WHERE a.username = :username";
         if($stmt = $pdo->prepare($sql)){
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             $param_username = trim($_POST["username"]);
             if($stmt->execute()){
                 if($stmt->rowCount() == 1){
                     if($row = $stmt->fetch()){
-                        $id = $row["id"];
+                        $id = $row["idU"];
+                        $idE = $row["idE"];
                         $username = $row["username"];
+                        $user_role = $row["role"];
                         $stored_password = $row["pwd"];
+
                         if($password == $stored_password){
-                            session_start();
+                            if(!isset($_SESSION)) 
+                            { 
+                                session_start(); 
+                            }
                             $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;                            
-                            header("location: index.php");
+                            $_SESSION["idU"] = $id;
+                            $_SESSION["idE"] = $idE;
+                            $_SESSION["username"] = $username; 
+                            $_SESSION["role"] = $user_role;  
+                            if ($user_role == "admin") {                       
+                                header("Location: index.php");
+                            } else {
+                                header("Location: index_student.php");
+                            }
                         } else{
                             $password_err = "Mot de passe invalid.";
                         }
                     }
-                } else{
+                } else {
                     $username_err = "Nom d'utilisateur invalid.";
                 }
             } else{
