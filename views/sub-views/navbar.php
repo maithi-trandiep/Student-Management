@@ -92,7 +92,7 @@
                 </li>
                 <?php } else { ?>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="index_student.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Mon profil</p>
                     </a>
